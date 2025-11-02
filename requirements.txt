@@ -1,0 +1,17 @@
+torch
+torchvision
+numpy
+pandas
+scikit-learn
+opencv-python
+Pillow
+tqdm
+gradio
+datasets
+kaggle
+torchserve
+torch-model-archiver
+prometheus-client
+pyyaml
+matplotlib
+albumentations
