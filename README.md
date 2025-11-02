@@ -1,84 +1,78 @@
-🩺 Pneumonia Detection from Chest X-Ray Images
+Pneumonia Detection from Chest X-Ray Images
 
-This project uses Deep Learning (ResNet-18) and FastAPI to classify chest X-ray images into:
+A deep learning pipeline to classify chest X-ray images into Normal or Pneumonia using ResNet-18 and served via a FastAPI inference API.
 
-Normal
+⚠️ For research and learning purposes only. Not for medical use.
 
-Pneumonia
+1. Project Overview
 
-Designed for learning, research, and demonstration of AI in medical imaging.
+Chest X-ray imaging is a key tool for diagnosing pneumonia.
+This project demonstrates:
 
-📁 Repository Structure
+Transfer learning with ResNet-18
+
+GPU-enabled model training (PyTorch)
+
+API based inference with FastAPI
+
+File-upload based prediction endpoint
+
+Local reproducibility and deployment readiness
+
+2. Technology Stack
+Category	Tools
+Model	ResNet-18 (PyTorch)
+API Framework	FastAPI + Uvicorn
+Dataset	Kaggle Chest X-Ray Pneumonia Dataset
+Environment	Conda + Python 3.10
+Hardware	CPU / NVIDIA GPU supported
+3. Project Structure
 medimg-project/
-│── checkpoints/          # Saved model weights
-│── data/                 # Dataset (not included in repo)
+│── checkpoints/            # Saved model weights
+│── data/                   # Chest X-ray dataset (excluded from repo)
 └── src/
-    ├── train.py          # Model training script
-    ├── test.py           # Evaluation script
-    ├── app.py            # FastAPI application
+    ├── app.py              # FastAPI service
+    ├── train.py            # Training script
+    ├── test.py             # Evaluation script
     └── requirements.txt
 
-✅ Features
-Feature	Details
-Model	ResNet-18 (Transfer Learning)
-Framework	PyTorch + FastAPI
-Inference	REST API for image upload & prediction
-GPU Support	Yes (CUDA enabled)
-Use Case	Pneumonia detection from chest X-rays
-📦 Setup
-1️⃣ Clone the repository
+4. Setup Instructions
+Clone repository
+```bash
 git clone https://github.com/<your-username>/medimg-project.git
 cd medimg-project/src
 
-2️⃣ Create & activate environment
+Create Conda environment
+```bash
 conda create -n medimg python=3.10 -y
 conda activate medimg
 
-3️⃣ Install dependencies
+Install dependencies
+```bash
 pip install -r requirements.txt
 
-🧠 Training the Model
+5. Dataset Structure
 
-Place the dataset like:
+Download the dataset from Kaggle and arrange like:
 
-data/chest_xray/train
-data/chest_xray/test
+data/chest_xray/train/
+data/chest_xray/test/
 
-
-Run training:
-
+6. Train the Model
 python train.py
 
 
-This creates:
+The trained model is saved to:
 
 checkpoints/model.pth
 
-📊 Evaluate Model
+7. Evaluate the Model
 python test.py
 
-🚀 Run the FastAPI Server
+8. Run FastAPI Service
 uvicorn app:app --reload
 
 
-API docs:
+API Docs:
 
-http://127.0.0.1:8000/docs
-
-🧪 Test the API (cURL Example)
-curl -X POST "http://127.0.0.1:8000/predict" \
-  -H "accept: application/json" \
-  -H "Content-Type: multipart/form-data" \
-  -F "file=@your_image.jpeg"
-
-
-Example response:
-
-{
-  "prediction": "PNEUMONIA"
-}
-
-📂 Dataset Used
-
-Chest X-Ray Images (Pneumonia) — Kaggle dataset
-Dataset not included due to size.
+http://localhost:8000/docs
