@@ -43,12 +43,12 @@ git clone https://github.com/<your-username>/medimg-project.git
 cd medimg-project/src
 
 Create Conda environment
-```bash
+
 conda create -n medimg python=3.10 -y
 conda activate medimg
 
 Install dependencies
-```bash
+
 pip install -r requirements.txt
 
 5. Dataset Structure
