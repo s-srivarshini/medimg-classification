@@ -1,48 +1,48 @@
-🩺 Medical X-Ray Pneumonia Detection (FastAPI + PyTorch)
+🩺 Pneumonia Detection from Chest X-Ray Images
 
-A deep-learning based medical imaging project that classifies Chest X-Ray images into:
+This project uses Deep Learning (ResNet-18) and FastAPI to classify chest X-ray images into:
 
-✅ Normal
-✅ Pneumonia
+Normal
 
-Built using PyTorch, ResNet18, and FastAPI.
-Includes training pipeline, inference API & cURL testing.
+Pneumonia
 
-📂 Project Structure
+Designed for learning, research, and demonstration of AI in medical imaging.
+
+📁 Repository Structure
 medimg-project/
- └── src/
-     ├── train.py          # Model training script
-     ├── test.py           # Evaluation script
-     ├── app.py            # FastAPI backend
-     └── data/             # Dataset directory
- └── checkpoints/          # Saved model (.pth)
+│── checkpoints/          # Saved model weights
+│── data/                 # Dataset (not included in repo)
+└── src/
+    ├── train.py          # Model training script
+    ├── test.py           # Evaluation script
+    ├── app.py            # FastAPI application
+    └── requirements.txt
 
- 🚀 Features
-Component	Description
+✅ Features
+Feature	Details
 Model	ResNet-18 (Transfer Learning)
-Accuracy	~73% currently (can be improved)
-Framework	PyTorch
-Inference	FastAPI REST API
-
-
-Hardware	GPU Supported (CUDA)
-📦 Installation
-1️⃣ Clone Repo
+Framework	PyTorch + FastAPI
+Inference	REST API for image upload & prediction
+GPU Support	Yes (CUDA enabled)
+Use Case	Pneumonia detection from chest X-rays
+📦 Setup
+1️⃣ Clone the repository
 git clone https://github.com/<your-username>/medimg-project.git
+cd medimg-project/src
 
-2️⃣ Create Virtual Environment
+2️⃣ Create & activate environment
 conda create -n medimg python=3.10 -y
 conda activate medimg
 
-3️⃣ Install Dependencies
+3️⃣ Install dependencies
 pip install -r requirements.txt
 
-📊 Training
+🧠 Training the Model
 
-Make sure dataset is placed inside:
+Place the dataset like:
 
-/data/chest_xray/train
-/data/chest_xray/test
+data/chest_xray/train
+data/chest_xray/test
 
 
 Run training:
@@ -50,64 +50,35 @@ Run training:
 python train.py
 
 
-Model saves to:
+This creates:
 
-/checkpoints/model.pth
+checkpoints/model.pth
 
-✅ Testing Model
+📊 Evaluate Model
 python test.py
 
-🌐 Running FastAPI Server
+🚀 Run the FastAPI Server
 uvicorn app:app --reload
 
 
-API URL:
-
-http://127.0.0.1:8000/predict
-
-
-Docs UI:
+API docs:
 
 http://127.0.0.1:8000/docs
 
-🧪 Test API with cURL
-curl -X 'POST' \
-  'http://127.0.0.1:8000/predict' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'file=@your_image.jpeg'
+🧪 Test the API (cURL Example)
+curl -X POST "http://127.0.0.1:8000/predict" \
+  -H "accept: application/json" \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@your_image.jpeg"
 
 
-Expected Response
+Example response:
 
 {
   "prediction": "PNEUMONIA"
 }
 
-📁 Dataset
+📂 Dataset Used
 
-Dataset used: Chest X-Ray Images (Pneumonia)
-
-📝 Not included in repo due to size.
-
-💡 Future Enhancements
-
-✅ Improve accuracy (ResNet50 / EfficientNet)
-
-✅ Add Streamlit UI
-
-🐳 Docker Deployment
-
-☁️ Deploy to AWS / GCP
-
-👩‍⚕️ Disclaimer
-
-This model is for learning & research only, not certified for clinical use.
-
-👤 Author
-
-Srivarshini Senthil Kumar
-
-
-
-cd medimg-project/src
+Chest X-Ray Images (Pneumonia) — Kaggle dataset
+Dataset not included due to size.
