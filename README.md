@@ -1,108 +1,113 @@
-🩺 Medical X-Ray Pneumonia Detection (Deep Learning + FastAPI)
+🩺 Medical X-Ray Pneumonia Detection (FastAPI + PyTorch)
 
-A deep learning project to classify Chest X-Ray images as Normal or Pneumonia using PyTorch and serve predictions through a FastAPI inference API.
+A deep-learning based medical imaging project that classifies Chest X-Ray images into:
 
-This project demonstrates end-to-end AI system design:
+✅ Normal
+✅ Pneumonia
 
-✅ Data preprocessing
-✅ CNN model training (ResNet-18)
-✅ GPU training support
-✅ Model evaluation
-✅ REST API for real-time predictions
-✅ Curl & Swagger UI testing
+Built using PyTorch, ResNet18, and FastAPI.
+Includes training pipeline, inference API & cURL testing.
 
 📂 Project Structure
 medimg-project/
-│
-├── data/
-│   └── chest_xray/ (dataset)
-│
-├── src/
-│   ├── train.py          # Train model
-│   ├── test.py           # Evaluate model
-│   └── app.py            # FastAPI inference server
-│
-├── checkpoints/          # Saved model weights
-├── requirements.txt
-└── README.md
+ └── src/
+     ├── train.py          # Model training script
+     ├── test.py           # Evaluation script
+     ├── app.py            # FastAPI backend
+     └── data/             # Dataset directory
+ └── checkpoints/          # Saved model (.pth)
 
-🧠 Model
+ 🚀 Features
+Component	Description
+Model	ResNet-18 (Transfer Learning)
+Accuracy	~73% currently (can be improved)
+Framework	PyTorch
+Inference	FastAPI REST API
 
-Architecture: ResNet-18 (Transfer Learning)
 
-Framework: PyTorch
+Hardware	GPU Supported (CUDA)
+📦 Installation
+1️⃣ Clone Repo
+git clone https://github.com/<your-username>/medimg-project.git
 
-Classes: NORMAL, PNEUMONIA
+2️⃣ Create Virtual Environment
+conda create -n medimg python=3.10 -y
+conda activate medimg
 
-Evaluation: Accuracy & loss on validation set
+3️⃣ Install Dependencies
+pip install -r requirements.txt
 
-🚀 Training
+📊 Training
 
-To train the model:
+Make sure dataset is placed inside:
 
-cd src
+/data/chest_xray/train
+/data/chest_xray/test
+
+
+Run training:
+
 python train.py
 
 
-Training auto-detects GPU if available.
+Model saves to:
+
+/checkpoints/model.pth
 
 ✅ Testing Model
-cd src
 python test.py
 
-🌐 Run FastAPI Server
-cd src
+🌐 Running FastAPI Server
 uvicorn app:app --reload
 
-🧪 API Usage
-✅ Swagger UI
 
-Open in browser:
+API URL:
+
+http://127.0.0.1:8000/predict
+
+
+Docs UI:
 
 http://127.0.0.1:8000/docs
 
-✅ cURL Testing
+🧪 Test API with cURL
 curl -X 'POST' \
   'http://127.0.0.1:8000/predict' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'file=@YOUR_IMAGE.jpeg;type=image/jpeg'
+  -F 'file=@your_image.jpeg'
 
-✅ Example Response
+
+Expected Response
+
 {
   "prediction": "PNEUMONIA"
 }
 
-📦 Dependencies
+📁 Dataset
 
-Install:
+Dataset used: Chest X-Ray Images (Pneumonia)
 
-pip install -r requirements.txt
+📝 Not included in repo due to size.
 
-Key Libraries
-Library	Purpose
-torch, torchvision	Deep Learning
-FastAPI, uvicorn	API backend
-Pillow	Image handling
-📊 Results
-Metric	Value
-Training Accuracy	~99%
-Test Accuracy	~73%
+💡 Future Enhancements
 
-Note: Real performance improves with more data augmentation & deeper models (ResNet50/EfficientNet).
+✅ Improve accuracy (ResNet50 / EfficientNet)
 
-🎯 Future Enhancements
+✅ Add Streamlit UI
 
-✅ Deploy on cloud (EC2 / Render / Railways)
+🐳 Docker Deployment
 
-✅ Docker support
+☁️ Deploy to AWS / GCP
 
-⏳ Streamlit UI for medical image upload
+👩‍⚕️ Disclaimer
 
-⏳ Explainability (Grad-CAM heatmaps)
+This model is for learning & research only, not certified for clinical use.
 
-⏳ Model upgrade to EfficientNet
+👤 Author
 
-🤝 Contributing
+Srivarshini Senthil Kumar
 
-Pull requests are welcome!
+
+
+cd medimg-project/src
